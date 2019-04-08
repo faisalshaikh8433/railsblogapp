@@ -1,0 +1,10 @@
+<h2>Add Comment</h2>
+
+
+<%= form_with(model: [ @article, @article.feedbacks.build ], local: true) do |form| %>
+	<%= form.label :username %>
+	<%= form.text_field :username %>
+	<%= form.label :body %>
+	<%= form.text_field :body %>
+	<%= form.submit({:class => 'btn btn-danger'}) %>
+<% end %>	
