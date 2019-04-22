@@ -1,0 +1,7 @@
+= simple_form_for @article do |f|
+  
+  = f.input :title, error:'It is Required',  input_html:{class:'form-control'}
+  = f.input :body, input_html:{class:'form-control'}
+  br
+  = f.submit "Save", class:'btn btn-primary '
+  = link_to "Back", articles_path, class:'btn btn-secondary ml-4'

@@ -1,4 +1,12 @@
 class ArticlesController < ApplicationController
+
+	require 'date'
+
+	def datefrmt
+		d = DateTime.now
+		newdate = d.strftime('%d-%m-%Y')
+		return newdate
+	end
 	
 	http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
  
@@ -14,7 +22,7 @@ class ArticlesController < ApplicationController
 	def create
 		# render plain: params[:article]["title"].inspect
 		@article = Article.new(article_params)
-
+		@article.ddiff_date = datefrmt
 		if @article.save
 			redirect_to @article
      	else
@@ -35,10 +43,11 @@ class ArticlesController < ApplicationController
 
 	def update
 		@article = Article.find(params[:id])
+		@article.ddiff_date = datefrmt
 		if @article.update(article_params)
 			redirect_to @article
 		else
-			return 'edit'
+			render 'edit'
 		end
 	end
 
