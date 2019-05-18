@@ -1,0 +1,16 @@
+h2 List of Users
+table.table.table-bordered.table-hover
+	thead
+		tr
+			td.text-center Name
+			td.text-center Email
+	tbody	
+		- @users.each do |user| 
+				tr
+					td.text-center = user.name 
+					td.text-center = user.email
+					
+= form_tag import_users_path, multipart: true do 
+	=file_field_tag :file
+	=submit_tag "upload"
+						
